@@ -1,0 +1,23 @@
+
+.container {
+	position: absolute;
+	background-color: #C12928;
+	width: 750rpx;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.page-bg {
+	position: absolute;
+	width: 750rpx; 
+	height: 100vh;
+	/* height: 1600rpx; */
+}
+
+.tui-dropdown-list{
+	width: 140px !important;
+}
+
+.tui-btn-class{
+	width: 140px !important;
+}

@@ -1,0 +1,1 @@
+<view class="cu-form-group margin-top"><view class="title text-bold">{{title}}</view><picker value="{{index}}" range="{{data}}" data-event-opts="{{[['change',[['PickerChange',['$event']]]]]}}" bindchange="__e"><view class="picker">{{index>-1?data[index]:'请选择'}}</view></picker></view>

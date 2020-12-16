@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/main/main",
+    "pages/avatar/avatar",
+    "pages/news/index",
+    "pages/mannage/index/index",
+    "pages/mannage/update/update"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "软件分享",
+    "navigationBarBackgroundColor": "#FFF",
+    "backgroundColor": "#C12928"
+  },
+  "tabBar": {
+    "color": "#7a7e83",
+    "selectedColor": "#333333",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "贴图",
+        "iconPath": "static/tabbar/img.png",
+        "selectedIconPath": "static/tabbar/img_cur.png"
+      },
+      {
+        "pagePath": "pages/main/main",
+        "text": "其他",
+        "iconPath": "static/tabbar/main.png",
+        "selectedIconPath": "static/tabbar/main_cur.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

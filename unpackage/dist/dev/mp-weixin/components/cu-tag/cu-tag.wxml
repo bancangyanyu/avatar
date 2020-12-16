@@ -1,0 +1,1 @@
+<view class="{{['cu-tag radius xl','bg-'+bgColor]}}"><text>{{label}}</text></view>

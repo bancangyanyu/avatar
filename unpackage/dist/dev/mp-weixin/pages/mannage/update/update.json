@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "cu-bar": "/components/cu-bar/cu-bar",
+    "cu-input": "/components/cu-input/cu-input",
+    "cu-button": "/components/cu-button/cu-button",
+    "form-item": "/components/cu-form/form-item",
+    "cu-picker": "/components/cu-picker/index"
+  }
+}

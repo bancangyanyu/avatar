@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cu-tag": "/components/cu-tag/cu-tag"
+  },
+  "component": true
+}

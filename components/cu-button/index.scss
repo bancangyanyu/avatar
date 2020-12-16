@@ -1,0 +1,44 @@
+.base-button{
+    padding: 0 8px ;
+    color: #FFFFFF !important;
+    margin-right: 0 !important;
+    width: 91px;
+    height: 32px;
+    border-radius: 6px;
+    font-size: 14px;
+    /deep/a{
+        margin-left: 6px;
+        color: #666666 !important;
+    }
+}
+
+.light{
+    color: #606266 !important;
+    background-color: #F6F5FF;
+    width: 104px;
+}
+.dark{
+    color: white;
+    background-color: #6181D7;
+}
+.link{
+    border:none;
+    box-shadow: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #03B4C2 !important;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    background: transparent;
+    &:focus{
+        background: transparent;
+    }
+    &:hover{
+        background: transparent;
+    }
+   span:hover{
+        text-decoration: underline !important;
+       
+    }
+}

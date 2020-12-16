@@ -1,0 +1,1 @@
+<view class="main"><cu-swipper vue-id="0bdc0520-1" bind:__l="__l"></cu-swipper><cu-grid vue-id="0bdc0520-2" data="{{gridList}}" bind:__l="__l"></cu-grid><cu-bar vue-id="0bdc0520-3" title="贴图" bind:__l="__l"></cu-bar><cu-share-list vue-id="0bdc0520-4" data="{{newsList}}" bind:__l="__l"></cu-share-list></view>

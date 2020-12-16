@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "article-item": "/components/cu-share-list/list-item"
+  }
+}

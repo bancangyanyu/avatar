@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "trees": "/components/uni-parser/libs/trees"
+  }
+}

@@ -1,0 +1,108 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": { 
+				"disableScroll": true,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+            "path" : "pages/main/main",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+            }
+            
+        }
+        ,{
+            "path" : "pages/avatar/avatar",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/news/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mannage/index/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mannage/update/update",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/images/images",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+            }
+            
+        }
+        ,{
+            "path" : "pages/images/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"tabBar": {
+		"color": "#7a7e83",
+		"selectedColor": "#333333", //"#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "贴图",
+				"iconPath": "static/tabbar/img.png",
+				"selectedIconPath": "static/tabbar/img_cur.png"
+			},
+			{
+				"pagePath": "pages/images/images",
+				"text": "头图",
+				"iconPath": "static/tabbar/img.png",
+				"selectedIconPath": "static/tabbar/img_cur.png"
+			},
+			{
+				"pagePath": "pages/main/main",
+				"text": "其他",
+				"iconPath": "static/tabbar/main.png",
+				"selectedIconPath": "static/tabbar/main_cur.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "软件分享",
+		"navigationBarBackgroundColor": "#FFF",
+		"backgroundColor": "#C12928"
+	}
+}

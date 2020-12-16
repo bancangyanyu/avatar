@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "cu-bar": "/components/cu-bar/cu-bar",
+    "uni-image-list": "/components/uni-image-list/uni-image-list",
+    "cu-search": "/components/cu-search/search",
+    "cu-swipper": "/components/cu-swiper/index-top-swiper"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-image-list": "/components/uni-image-list/uni-image-list",
+    "cu-search": "/components/cu-search/search",
+    "uni-label-card": "/components/uni-label/index",
+    "cu-tag-list": "/components/cu-tag/list"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="data-v-d9c9e7fa"><view class="cu-tag-list data-v-d9c9e7fa"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index"><cu-tag class="cu-tag-item data-v-d9c9e7fa" vue-id="{{'5f72153a-1-'+index}}" label="{{item.label}}" bind:__l="__l"></cu-tag></block></view></view>

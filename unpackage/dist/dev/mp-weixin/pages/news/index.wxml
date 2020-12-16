@@ -1,0 +1,1 @@
+<view class="main bg-white"><view class="news bg-white"><view class="news-title">{{newsInfo.title||''}}</view><view class="news-content"><parser class="vue-ref" vue-id="609d63d2-1" html="{{html}}" use-cache="{{true}}" data-ref="article" bind:__l="__l" vue-slots="{{['default']}}">加载中...</parser></view></view></view>

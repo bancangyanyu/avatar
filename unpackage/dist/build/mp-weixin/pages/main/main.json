@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "cu-bar": "/components/cu-bar/cu-bar",
+    "cu-share-list": "/components/cu-share-list/cu-share-list",
+    "cu-swipper": "/components/cu-swiper/index-top-swiper",
+    "cu-grid": "/components/cu-grid/grid"
+  }
+}

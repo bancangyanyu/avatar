@@ -1,0 +1,37 @@
+
+image.data-v-527313a4 {
+	display: block;
+	will-change: transform;
+}
+.waterfall-flow.data-v-527313a4 {
+	position: relative;
+	background-color: #F4F4F4;
+}
+/* 为了初始化，还为定位上，加上这个 */
+.item.data-v-527313a4 {
+	width: 375rpx;
+	position: absolute;
+	top: -375rpx;
+	left: -375rpx;
+}
+.box.data-v-527313a4 {
+	margin: 10rpx;
+	-webkit-box-shadow: 0 0 8rpx #ccc;
+	        box-shadow: 0 0 8rpx #ccc;
+	overflow: hidden;
+}
+.user.data-v-527313a4 {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	padding: 10rpx;
+}
+.content.data-v-527313a4 {
+	font-size: 32rpx;
+	padding: 20rpx 10rpx 0 10rpx;
+	color: #333;
+}
+
