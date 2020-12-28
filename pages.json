@@ -1,12 +1,15 @@
 {
 	"pages": [
 		{
-			"path": "pages/index/index",
-			"style": { 
-				"disableScroll": true,
+            "path" : "pages/images/images",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "头像",
+                "enablePullDownRefresh": false,
 				"navigationStyle": "custom"
-			}
-		},
+            }
+            
+        },
 		{
             "path" : "pages/main/main",
             "style" :                                                                                    
@@ -16,13 +19,21 @@
 				"navigationStyle": "custom"
             }
             
-        }
+        },
+		{
+			"path": "pages/index/index",
+			"style": { 
+				"disableScroll": true,
+				"navigationStyle": "custom"
+			}
+		}
         ,{
             "path" : "pages/avatar/avatar",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "头像贴纸",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
             }
             
         }
@@ -33,7 +44,6 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         }
         ,{
             "path" : "pages/mannage/index/index",
@@ -42,7 +52,6 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         }
         ,{
             "path" : "pages/mannage/update/update",
@@ -51,24 +60,31 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
-        }
-        ,{
-            "path" : "pages/images/images",
+        },
+		{
+            "path" : "pages/images/index",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false,
-				"navigationStyle": "custom"
+                "navigationBarTitleText": "更多头像",
+                "enablePullDownRefresh": false
+            }
+        }
+        ,{
+            "path" : "pages/special/special",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "专题",
+                "enablePullDownRefresh": false
             }
             
         }
         ,{
-            "path" : "pages/images/index",
+            "path" : "pages/special/detail",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "专题详情",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
             }
             
         }
@@ -80,22 +96,29 @@
 		"backgroundColor": "#ffffff",
 		"list": [
 			{
+				"pagePath": "pages/images/images",
+				"text": "头像",
+				"iconPath": "static/tabbar/image.png",
+				"selectedIconPath": "static/tabbar/image_cur.png"
+			},
+			{ 
+				"pagePath": "pages/special/special",
+				"text": "专题",
+				"iconPath": "static/tabbar/special.png",
+				"selectedIconPath": "static/tabbar/special_cur.png"
+			}, 
+			
+			{ 
 				"pagePath": "pages/index/index",
 				"text": "贴图",
 				"iconPath": "static/tabbar/img.png",
 				"selectedIconPath": "static/tabbar/img_cur.png"
 			},
-			{
-				"pagePath": "pages/images/images",
-				"text": "头图",
-				"iconPath": "static/tabbar/img.png",
-				"selectedIconPath": "static/tabbar/img_cur.png"
-			},
-			{
+			{    
 				"pagePath": "pages/main/main",
 				"text": "其他",
-				"iconPath": "static/tabbar/main.png",
-				"selectedIconPath": "static/tabbar/main_cur.png"
+				"iconPath": "static/tabbar/other.png",
+				"selectedIconPath": "static/tabbar/other_cur.png"
 			}
 		]
 	},

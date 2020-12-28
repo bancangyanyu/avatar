@@ -1,5 +1,7 @@
 {
   "disableScroll": true,
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-fab": "/components/uni-fab/uni-fab"
+  }
 }

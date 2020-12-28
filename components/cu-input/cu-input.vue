@@ -1,5 +1,7 @@
 <template>
-	<view class="cu-form-group cu-form-item"><input type="text" @input="handleChange" /></view>
+	<view class="cu-form-group cu-form-item">
+		<input type="text" @input="handleChange" v-model="value"/>
+	</view>
 </template>
 
 <script>
@@ -9,14 +11,23 @@ export default {
 		prop: 'value',
 		event: 'change'
 	},
+	props:{
+		value:{
+			type:[String,Number],
+			default:""
+		}
+	},
 	data() {
-		return {};
+		return {
+			
+		};
 	},
 	methods: {
 		handleChange(e) {
 			const { value } = e.target
-			console.log("input",value);
-			this.$emit('change', value);
+			this.value = value
+			console.log("input", value);
+			this.$emit('change', this.value);
 		}
 	}
 };

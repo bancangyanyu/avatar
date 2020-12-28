@@ -1,0 +1,1 @@
+<view class="main"><cu-img-list vue-id="5be35bcc-1" data="{{imgList}}" bind:__l="__l"></cu-img-list></view>

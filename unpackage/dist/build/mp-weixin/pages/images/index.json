@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "更多头像",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-image-list": "/components/uni-image-list/uni-image-list",
+    "uni-fab": "/components/uni-fab/uni-fab",
+    "cu-search": "/components/cu-search/search",
+    "uni-label-card": "/components/uni-label/index",
+    "cu-tag-list": "/components/cu-tag/list"
+  }
+}

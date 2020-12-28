@@ -21,10 +21,11 @@
 			enableSecurityCheck: true,
 			userAvatarUrl: null,
 			userAvatarFilePath: null,
-			maskAvatarSavedTempPath: null
+			maskAvatarSavedTempPath: null,
+			IS_ANDROID: IS_ANDROID,
 		},
 		onLaunch: function() {
-			setupAppUpdateListener();
+			setupAppUpdateListener()
 		},
 		onShow: function() {},
 		onHide: function() {}
@@ -32,6 +33,7 @@
 </script>
 
 <style>
+	
 	/*每个页面公共css */
 	@import './common/uni.css';
 	@import "colorui/main.css";
@@ -39,7 +41,7 @@
 	@import "app.css";
 	.main{
 		min-height: 100vh;
-		background-color: #f1f1f1;
+		background-color: #f1f1f1; 
 	}
 	.main-content{ 
 		padding: 0 30rpx;

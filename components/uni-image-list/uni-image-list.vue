@@ -1,134 +1,190 @@
 <template>
-	<view class="waterfall-flow" ref="waterfall">
-		<!-- class="item" 必须有, 限制好 item 宽度  -->
-		<view class="item" :style="item.style" v-for="(item, index) in newList" :key="item.key" :data-index="index" @click="choose">
-			<!-- 盒子样式，自定义 -->
-			<view class="box">
-				<view class="pic">
-					<image class="image" mode="widthFix" :src="item.image" style="width: 100%; display: block;" ></image>
-				</view>
-<!-- 				<view class="content">{{item.content}}</view>
-				<view class="user">
-					<image style="width: 40upx; height: 40upx; border-radius: 50%; margin-right: 10upx;" 
-						:src="item.user.avatar"></image>
-					<text>{{item.user.name}}</text>
-				</view> -->
+	<view class="img-list">
+		<view class="waterfalls-box" :style="{ height: height + 'px' }">
+			<!--  #ifdef  MP-WEIXIN -->
+			<view
+				v-for="(item, index) of list"
+				class="waterfalls-list"
+				:key="item[idKey]"
+				:id="'waterfalls-list-id-' + item[idKey]"
+				:ref="'waterfalls-list-id-' + item[idKey]"
+				:style="{
+					'--offset': offset + 'px',
+					'--cols': cols,
+					top: allPositionArr[index].top || 0,
+					left: allPositionArr[index].left || 0
+				}"
+				@click="$emit('wapper-lick', item)"
+			>
+				<image
+					class="waterfalls-list-image"
+					mode="widthFix"
+					:class="{ single }"
+					:style="imageStyle"
+					:src="item[imageSrcKey] || ' '"
+					@load="imageLoadHandle(index)"
+					@error="imageLoadHandle(index)"
+					@click="handleClick(item,index)"
+				/>
+				<slot name="slot{{index}}" />
 			</view>
+			<!--  #endif -->
+
+			<!--  #ifndef  MP-WEIXIN -->
+			<view
+				v-for="(item, index) of list"
+				class="waterfalls-list"
+				:key="item[idKey]"
+				:id="'waterfalls-list-id-' + item[idKey]"
+				:ref="'waterfalls-list-id-' + item[idKey]"
+				:style="{
+					'--offset': offset + 'px',
+					'--cols': cols,
+					...listStyle,
+					...(allPositionArr[index] || {})
+				}"
+				@click="$emit('wapper-lick', item)"
+			>
+				<image
+					class="waterfalls-list-image"
+					:class="{ single }"
+					mode="widthFix"
+					:style="imageStyle"
+					:src="item[imageSrcKey] || ' '"
+					@load="imageLoadHandle(index)"
+					@error="imageLoadHandle(index)"
+					@click="handleClick(item,index)"
+				/>
+				<slot v-bind="item" />
+			</view>
+			<!--  #endif -->
 		</view>
 	</view>
 </template>
-
 <script>
-	export default {
-		props: {
-			list: {
-				type: Array,
-				default() {
-					return []
-				}
-			}
-		},
-		data () {
-			return {
-				newList: [], // 兼容小程序
-				boxHeight: []
-			}
-		},
-		watch: {
-			list (newVal, oldVal) {
-				if (newVal != oldVal) {
-					// #ifndef MP-WEIXIN
-					this.newList = this.list;
-					// #endif
-					// #ifdef MP-WEIXIN
-					this.newList = this.newList.concat(newVal)
-					// #endif
-					let mark = oldVal.length;
-					let len = this.list.length;
-					let screenWidth = uni.getSystemInfoSync().screenWidth;
-					let style = '';
-					this.$nextTick(async ()=> {
-						const query = uni.createSelectorQuery().in(this);
-						let dataArray = [];
-						await new Promise((resolve, reject)=>{
-							setTimeout(() => {
-								query.selectAll('.waterfall-flow .item').fields({size: true}, data => {
-									dataArray = data;
-									resolve()
-								}).exec();
-							}, 520) // 针对图片 mode="widthFix" 尺寸改变时的延迟
-						})
-						for (let i = mark; i < len; i++) {
-							if (i < 2) {
-								style = `top: 0; left: ${(screenWidth/2) * i}px;`
-								this.boxHeight.push(dataArray[i].height)
-							} else {
-								let minHeight = this.boxHeight[0];
-								if (minHeight > this.boxHeight[1]) {
-									minHeight = this.boxHeight[1];
-									this.boxHeight[1] = minHeight + dataArray[i].height;
-									style = `top: ${minHeight}px; left: ${(screenWidth/2)}px;`
-								} else {
-									this.boxHeight[0] = minHeight + dataArray[i].height;
-									style = `top: ${minHeight}px; left: 0;`
-								}
-							}
-							this.$set(this.newList[i], 'style', style);
-							this.$forceUpdate();
+export default {
+	props: {
+		list: { type: Array, required: true },
+		// offset 间距，单位为 px
+		offset: { type: Number, default: 10 },
+		// 列表渲染的 key 的键名，值必须唯一，默认为 id
+		idKey: { type: String, default: '_id' },
+		// 图片 src 的键名
+		imageSrcKey: { type: String, default: 'img_url' },
+		// 列数
+		cols: { type: Number, default: 3, validator: num => num >= 2 },
+		imageStyle: { type: Object },
+
+		// 是否是单独的渲染图片的样子，只控制图片圆角而已
+		single: { type: Boolean, default: false },
+
+		// #ifndef MP-WEIXIN
+		listStyle: { type: Object }
+		// #endif
+	},
+	data() {
+		return {
+			topArr: [], // left, right 多个时依次表示第几列的数据
+			allPositionArr: [], // 保存所有的位置信息
+			allHeightArr: [], // 保存所有的 height 信息
+			height: 0, // 外层包裹高度
+			oldNum: 0,
+			num: 0
+		};
+	},
+	created() {
+		this.refresh();
+	},
+	methods: {
+		imageLoadHandle(index) {
+			const id = 'waterfalls-list-id-' + this.list[index][this.idKey],
+				query = uni.createSelectorQuery().in(this);
+			query
+				.select('#' + id)
+				.fields({ size: true }, data => {
+					this.num++;
+					this.$set(this.allHeightArr, index, data.height);
+					if (this.num === this.list.length) {
+						for (let i = this.oldNum; i < this.num; i++) {
+							const getTopArrMsg = () => {
+								let arrtmp = [...this.topArr].sort((a, b) => a - b);
+								return {
+									shorterIndex: this.topArr.indexOf(arrtmp[0]),
+							 		shorterValue: arrtmp[0],
+									longerIndex: this.topArr.indexOf(arrtmp[this.cols - 1]),
+									longerValue: arrtmp[this.cols - 1]
+								};
+							};
+
+							const { shorterIndex, shorterValue } = getTopArrMsg();
+							const position = {
+								top: shorterValue + 'px',
+								left: (data.width + this.offset) * shorterIndex + 'px'
+							};
+							this.$set(this.allPositionArr, i, position);
+							this.topArr[shorterIndex] = shorterValue + this.allHeightArr[i] + this.offset;
+							this.height = getTopArrMsg().longerValue - this.offset;
 						}
-					})
-				}
-			}
-		},
-		methods: {
-			// 选中
-			choose(e) {
-				let index = e.currentTarget.dataset.index;
-				console.log(this.newList[index]);
-				const { image } = this.newList[index]
-				this.handlePreview(image)
-				this.$emit('click', this.newList[index]);
-			},
-			handlePreview(image){
-				const imgArr= [image]
-				uni.previewImage({
-					current:0,
-					urls: imgArr
+						this.oldNum = this.num;
+						// 完成渲染 emit `image-load` 事件
+						this.$emit('image-load');
+					}
 				})
+				.exec();
+		},
+		refresh() {
+			let arr = [];
+			for (let i = 0; i < this.cols; i++) {
+				arr.push(0);
+			}
+			this.topArr = arr;
+			this.num = 0;
+			this.oldNum = 0;
+		},
+		handleClick(item,index){
+			this.$emit('image-click', item) 
+			console.log("预览",[item,index]);
+			this.handlePreview(index)
+		},
+		handlePreview(idx){
+			  const list = this.list.map(item=>item.img_url)
+			      // list：图片 url 数组
+			  if(list && list.length > 0){        
+				  uni.previewImage({ 
+					  current:list[idx],    //  传 Number H5端出现不兼容 
+					  urls: list
+				  });
+			  }
+		}
+	}
+};
+</script>
+<style lang="scss" scoped>
+// 这里可以自行配置
+$border-radius: 6px;
+.img-list{
+	padding: 20rpx;
+}
+.waterfalls-box {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	.waterfalls-list {
+		width: calc((100% - var(--offset) * (var(--cols) - 1)) / var(--cols));
+		position: absolute;
+		background-color: #fff;
+		border-radius: $border-radius;
+		// 防止刚开始渲染时堆叠在第一幅图的地方
+		left: calc(-50% - var(--offset));
+		.waterfalls-list-image {
+			width: 100%;
+			will-change: transform;
+			border-radius: $border-radius $border-radius 0 0;
+			display: block;
+			&.single {
+				border-radius: $border-radius;
 			}
 		}
 	}
-</script>
-
-<style scoped>
-	image {
-		display: block;
-		will-change: transform;
-	}
-	.waterfall-flow {
-		position: relative;
-		background-color: #F4F4F4;
-	}
-	/* 为了初始化，还为定位上，加上这个 */
-	.item {
-		width: 375rpx;
-		position: absolute;
-		top: -375rpx;
-		left: -375rpx;
-	}
-	.box {
-		margin: 10rpx;
-		box-shadow: 0 0 8rpx #ccc;
-		overflow: hidden;
-	}
-	.user {
-		display: flex;
-		align-items: center;
-		padding: 10rpx;
-	}
-	.content {
-		font-size: 32rpx;
-		padding: 20rpx 10rpx 0 10rpx;
-		color: #333;
-	}
+}
 </style>

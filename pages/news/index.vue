@@ -42,7 +42,7 @@ export default {
 				});
 			uni.hideLoading();
 			console.log('列表数据', data)
-			const [newsInfo] = data
+			const [newsInfo = {}] = data
 			this.newsInfo = newsInfo
 			this.html = newsInfo?.content
 		}

@@ -24,14 +24,14 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.cu-dialog {
+.cu-dialog.data-v-6d0fd3bc {
   width: 568rpx;
   -webkit-border-radius: 8rpx;
           border-radius: 8rpx;
   background-color: transparent;
   padding: 20rpx;
 }
-.cu-dialog .title {
+.cu-dialog .title.data-v-6d0fd3bc {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -44,13 +44,13 @@
           justify-content: center;
   font-weight: bold;
 }
-.cu-dialog .title text {
+.cu-dialog .title text.data-v-6d0fd3bc {
   font-weight: normal;
   margin-top: 5rpx;
   font-size: 25rpx;
   color: #cccccc;
 }
-.cu-dialog .modal-content {
+.cu-dialog .modal-content.data-v-6d0fd3bc {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -61,7 +61,7 @@
   margin-top: 10rpx;
   padding: 20rpx;
 }
-.cu-dialog .modal-content .left {
+.cu-dialog .modal-content .left.data-v-6d0fd3bc {
   width: 50%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -74,15 +74,15 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.cu-dialog .modal-content .left image {
+.cu-dialog .modal-content .left image.data-v-6d0fd3bc {
   height: 90rpx;
   margin-bottom: 20rpx;
 }
-.cu-dialog .modal-content .left text {
+.cu-dialog .modal-content .left text.data-v-6d0fd3bc {
   color: #f77f1e;
   font-size: 25rpx;
 }
-.cu-dialog .modal-content .right {
+.cu-dialog .modal-content .right.data-v-6d0fd3bc {
   width: 50%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -95,15 +95,15 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.cu-dialog .modal-content .right image {
+.cu-dialog .modal-content .right image.data-v-6d0fd3bc {
   height: 90rpx;
   margin-bottom: 20rpx;
 }
-.cu-dialog .modal-content .right text {
+.cu-dialog .modal-content .right text.data-v-6d0fd3bc {
   color: #0079ee;
   font-size: 25rpx;
 }
-.cu-dialog .close {
+.cu-dialog .close.data-v-6d0fd3bc {
   color: #FFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -116,11 +116,11 @@
           align-items: center;
   z-index: 999;
 }
-.cu-dialog .close text {
+.cu-dialog .close text.data-v-6d0fd3bc {
   font-size: 70rpx;
   margin-top: 52rpx;
 }
-.cu-dialog .cu-content {
+.cu-dialog .cu-content.data-v-6d0fd3bc {
   -webkit-border-radius: 8rpx;
           border-radius: 8rpx;
   padding: 20rpx 3rpx;

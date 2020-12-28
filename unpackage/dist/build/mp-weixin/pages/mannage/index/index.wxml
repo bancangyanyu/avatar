@@ -1,1 +1,1 @@
-<view></view>
+<view><cu-button vue-id="70c289fe-1" type="default" data-event-opts="{{[['^click',[['handleClick',[1]]]]]}}" bind:click="__e" bind:__l="__l" vue-slots="{{['default']}}">上传类型</cu-button><cu-button vue-id="70c289fe-2" type="default" data-event-opts="{{[['^click',[['handleClick',[2]]]]]}}" bind:click="__e" bind:__l="__l" vue-slots="{{['default']}}">上传图片</cu-button></view>

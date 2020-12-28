@@ -21,3 +21,7 @@
 .tui-btn-class{
 	width: 140px !important;
 }
+.text-shadow-info{
+	text-shadow: 1rpx 3rpx 5rpx #000;
+	font-style: italic;
+}

@@ -1,0 +1,1 @@
+.main{min-height:100vh}.main .footer{width:100vw;position:fixed;bottom:16rpx;left:0}.main .bottom{height:100%;padding-bottom:140rpx}

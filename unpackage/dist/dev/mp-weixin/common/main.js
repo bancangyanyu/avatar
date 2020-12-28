@@ -112,7 +112,8 @@ var docId = 'mp_launch_config_doc';var _default =
     enableSecurityCheck: true,
     userAvatarUrl: null,
     userAvatarFilePath: null,
-    maskAvatarSavedTempPath: null },
+    maskAvatarSavedTempPath: null,
+    IS_ANDROID: IS_ANDROID },
 
   onLaunch: function onLaunch() {
     (0, _util.setupAppUpdateListener)();

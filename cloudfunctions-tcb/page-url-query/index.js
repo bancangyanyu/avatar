@@ -9,6 +9,7 @@ exports.main = async (event, context) => {
     const res = await collection.where({
         type
     }).get()
+	
     return res
 }
  

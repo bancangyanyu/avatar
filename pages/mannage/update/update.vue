@@ -8,9 +8,9 @@
 		<view class="bg-white padding-xl">
 			<view class="cuIcon-add bg-green" @click="handleAdd" />
 			<view class="avatar-list">
-				<block v-for="(item, index) in avatarList">
+				<block v-for="(item, index) in avatarList" :key="item.value">
 					<view class="avatar">
-						<cu-input class="avatar-input" v-model="avatarListData[index]"/>
+						<cu-input class="avatar-input" v-model="item.value"/>
 						<view class="cuIcon-close bg-red avatar-action" @click="handleClear(index)" v-if="index > 0" />
 					</view>
 				</block>
@@ -42,14 +42,54 @@ export default {
 			},
 			avatarListData:[],
 			avatarList: [1],
-			TypeData: ['国庆', '新年', '中秋', '圣诞', '情人节', '国风']
+			TypeData: ['国庆','圣诞','新年', '中秋','情人节', '国风']
 		};
 	},
+	onLoad(option) {
+		console.log(option);
+		const { type = ""} = option
+		this.formData.type =parseInt(type) 
+		type && this.handelGetPageUrl(parseInt(type) )
+	},
 	methods: {
+		async handelGetPageUrl(type) {
+				uni.showLoading({
+					title:"加载中..."
+				})
+				const {
+					result: { data }
+				} = await uniCloud
+					.callFunction({ 
+						name: 'page-url-query',
+						data: {
+							type
+						}
+					})
+					.catch(err => {
+						uni.hideLoading();
+						uni.showModal({
+							content: `查询失败，错误信息为：${err.message}`,
+							showCancel: false
+						});
+						console.error(err);
+					});
+				const [pageData] = data
+				const { photo_url } = pageData 
+				const urlList = photo_url.split("*")
+				const url = urlList.map(item=>{return {value:item}})
+				this.avatarList = url
+				console.log("请求的接口",pageData );
+				this.formData.avatar_url = pageData.avatar_url
+				this.formData.page_url = pageData.page_url
+				this.formData.id = pageData._id ||""
+				console.log("查询的数据",url);
+				uni.hideLoading();
+			},
+		
 		onPickerChange() {},
 		
 		handleAdd() {
-			this.avatarList.push(1);
+			this.avatarList.push({value:""});
 		},
 		handleClear(index) {
 			if (index > 0) {
@@ -61,8 +101,9 @@ export default {
 			uni.showLoading({
 				title: '处理中...'
 			});
-			const { formData = {} ,avatarListData=[]} = this;
-			formData.photo_url = avatarListData.join("*")
+			const { formData = {} ,avatarList=[]} = this;
+			const list = avatarList.map(itrm=>item.value)
+			formData.photo_url = list.join("*")
 			uniCloud 
 				.callFunction({
 					name: 'page-url-update',
@@ -70,10 +111,18 @@ export default {
 				})
 				.then(res => {
 					uni.hideLoading();
+					const formData = {
+						page_url: '',
+						avatar_url: '',
+						photo_url: '',
+						type: 0
+					}
 					uni.showModal({
-						content: `成功添加一条数据，文档id为：${avatarListData}`,
+						content: `添加数据为：${JSON.stringify(res)}`,
 						showCancel: false
 					});
+					this.formData = formData
+					this.avatarList = []
 					console.log(res);
 				})
 				.catch(err => {
@@ -123,7 +172,7 @@ $icon-width: 45rpx;
 		padding: 0.5rpx;
 		padding-right: 10rpx;
 		.avatar-input {
-			width: 70%;
+			width: 95%;
 		}
 		.avatar-action {
 		}

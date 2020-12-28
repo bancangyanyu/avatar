@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "img-item": "/components/cu-img-list/list-item"
+  }
+}

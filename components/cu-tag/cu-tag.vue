@@ -1,5 +1,5 @@
 <template>
-	<view class="cu-tag radius xl" :class="[`bg-${bgColor}`]">
+	<view class="cu-tag radius xl" :class="[`bg-${bgColor}`]" @click="handleClick">
 		<text>{{ label }}</text>
 	</view>
 </template>
@@ -33,6 +33,9 @@ export default {
 		};
 	},
 	methods: {
+		handleClick(){
+			this.$emit("click")
+		},
 		handleRandom(min, max) {
 			const random = Math.random()
 			if (min > max) {

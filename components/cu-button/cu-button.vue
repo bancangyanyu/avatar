@@ -4,7 +4,10 @@
 					:class="'bg-'+color"
 					@click="click" 
 					 :disabled="disabled"
-					:form-type="formType">{{btnTxt}}</button> 
+					:form-type="formType"
+					:open-type="openType">
+					<slot></slot>
+			</button> 
 		</view>
 </template>
 
@@ -27,6 +30,10 @@
 			disabled:{
 				type:Boolean,
 				default:false
+			},
+			openType:{
+				type:String,
+				default:''
 			}
 		}, 
 		data() {

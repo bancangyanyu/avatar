@@ -95,7 +95,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	
 	.index-swiper{
 		width: 692rpx;

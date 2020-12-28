@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "专题",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "cu-img-list": "/components/cu-img-list/cu-img-list"
+  }
+}

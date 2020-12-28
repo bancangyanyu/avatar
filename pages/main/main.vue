@@ -1,11 +1,11 @@
 <template>
 	<view class="main">
 		<cu-swipper />
-		<cu-grid :data="gridList" />
-		<cu-bar title="贴图" />
+		<cu-grid :data="gridList" class="margin-top"/>
+		<cu-bar title="头像贴图" class="margin-top"/>
 		<cu-share-list :data="newsList" />
-	</view>
-</template>
+	</view>  
+</template> 
 
 <script>
 import CuSwipper from '@/components/cu-swiper/index-top-swiper.vue';
@@ -13,7 +13,7 @@ import CuShareList from '@/components/cu-share-list/cu-share-list.vue';
 import CuGrid from '@/components/cu-grid/grid.vue';
 import { gridList } from './index';
 export default {
-	components: { 
+	components: {  
 		CuSwipper,
 		CuShareList,
 		CuGrid
@@ -21,7 +21,8 @@ export default {
 	data() {
 		return {
 			gridList,
-			newsList:[]
+			newsList:[],
+			
 		};
 	},
 	onLoad() {
@@ -57,4 +58,9 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+	.main{
+		background-color: #f1f1f1;
+		margin-bottom: 120rpx;
+	}
+</style>

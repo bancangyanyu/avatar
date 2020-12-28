@@ -31,7 +31,7 @@
   display: flex;
   -webkit-flex-wrap: wrap;
           flex-wrap: wrap;
-  padding: 20rpx 30rpx;
+  padding: 20rpx 15rpx;
 }
 .cu-tag-list .cu-tag-item.data-v-d9c9e7fa {
   margin: 2rpx 5rpx;

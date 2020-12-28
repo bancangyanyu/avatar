@@ -1,24 +1,36 @@
 <template>
-	<view >
-		<view class="cu-tag-list" >
-			<cu-tag :label="item.label" v-for="(item, index) in list" :key="index" class="cu-tag-item"/>
-		</view>
-	</view>
-</template> 
- 
+	<view class="cu-tag-list" >
+		<block v-for="(item, index) in list" :key="index">
+			<cu-tag :label="item.img_type" class="cu-tag-item" @click="handleClick(item.img_id)" /> 
+		</block>
+	</view> 
+</template>  
+
 <script>
 import cuTag from '@/components/cu-tag/cu-tag.vue';
 export default {
 	components:{
 		cuTag
 	},  
+	props:{
+		list:{
+			type:Array,
+			default:()=>[]
+		}
+	},
 	data() {
 		return{ 
-			list: [{ label: '动漫' }	,{ label: '风景' },{ label: '男头' },{ label: '女头' },{ label: '可爱' }]
+			
 		}
-	}
-	
-};
+	},
+	methods: { 
+		handleClick(e) {
+			// const { id } = e.currentTarget
+			console.log("click",e); 
+			this.$emit("click",e)
+		}
+	},
+}
 </script>
 
 <style lang="scss" scoped >
@@ -26,7 +38,7 @@ export default {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
-		padding: 20rpx 30rpx ;
+		padding: 20rpx 15rpx ;
 		.cu-tag-item {
 			margin: 2rpx 5rpx;
 		}

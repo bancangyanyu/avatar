@@ -1,1 +1,1 @@
-<view class="cu-form-group cu-form-item"><input type="text" data-event-opts="{{[['input',[['handleChange',['$event']]]]]}}" bindinput="__e"/></view>
+<view class="cu-form-group cu-form-item"><input type="text" data-event-opts="{{[['input',[['__set_model',['','value','$event',[]]],['handleChange',['$event']]]]]}}" value="{{value}}" bindinput="__e"/></view>

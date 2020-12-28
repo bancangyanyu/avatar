@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
   "usingComponents": {
     "cu-bar": "/components/cu-bar/cu-bar",
     "cu-share-list": "/components/cu-share-list/cu-share-list",

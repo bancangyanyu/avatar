@@ -32,7 +32,7 @@
   margin-right: auto;
 }
 .avatar-bg-border.data-v-3cba10b4 {
-  border: 6px solid white;
+  border: 12rpx solid white;
   -webkit-border-radius: 10px;
           border-radius: 10px;
   width: 282px;
@@ -44,6 +44,8 @@
   height: 270px;
   width: 270px;
   background-color: #fff;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 .action-wrapper.data-v-3cba10b4 {
   padding-top: 30rpx;
@@ -63,6 +65,8 @@
   position: absolute;
   top: 100px;
   border: 3px solid rgba(255, 255, 255, 0);
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 .maskWithBorder.data-v-3cba10b4 {
   border: dashed 3px white;
@@ -109,7 +113,7 @@
 .imgList.data-v-3cba10b4 {
   height: 65px;
   width: 65px;
-  border: 2px solid white;
+  border: 4rpx solid white;
   -webkit-border-radius: 5px;
           border-radius: 5px;
   margin: 10px 10px 10px 10px;
@@ -131,5 +135,16 @@
   min-height: 110rpx;
   margin: 30px auto 0;
   width: 700rpx;
+}
+.avatar-list-bg.data-v-3cba10b4 {
+  width: 100%;
+  height: 230rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: rgba(9, 0, 1, 0.4);
+}
+button.data-v-3cba10b4 {
+  z-index: 999;
 }
 

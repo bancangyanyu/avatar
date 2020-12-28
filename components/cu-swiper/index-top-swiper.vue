@@ -12,7 +12,7 @@
 					v-for="item in data">
 					<image :src="item"
 							id="img"
-						   :mode="mode" ></image>
+						   mode="aspectFill" ></image>
 				</swiper-item>   
 		</swiper> 
 	</view>
@@ -26,14 +26,16 @@
 			data:{
 				type:Array,
 				default:()=>[
-					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn@main/image/a5cfc26b98952bd1f27d0e9c1d4281b9.1yh1f0gq6o00.jpg",
-					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn@main/image/xxx.bvg4p8lg6bs.jpg",
-					
+					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn/avatar/cdn/20201211133722_f61cd.thumb.400_0.jpg",
+					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn/avatar/cdn/20201205192440_9b781.thumb.400_0.jpg",
+					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn/avatar/cdn/20200217122458_StUuE.thumb.1000_0.jpeg",
+					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn/avatar/cdn/20201207153529_f6385.thumb.400_0.jpeg",
+					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn/avatar/cdn/20201208214751_b925d.thumb.400_0.jpeg"
 				]
 			},
 			mode:{
 				type:String,
-				default:'aspectFill'
+				default:'a'
 			},
 			height:{
 				type:[String,Number],
@@ -44,9 +46,8 @@
 			return {
 				accessStatus:false,
 				testList:[ 
-					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn@main/image/a5cfc26b98952bd1f27d0e9c1d4281b9.1yh1f0gq6o00.jpg",
+					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn/avatar/cdn/20201205192440_9b781.thumb.400_0.jpg",
 					"https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn@main/image/xxx.bvg4p8lg6bs.jpg",
-
 				] 
 			};
 		},
@@ -85,7 +86,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	swiper{
 		
 		.swiper-item{

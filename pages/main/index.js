@@ -3,23 +3,23 @@ export const gridList = [{
     name: '国旗贴纸',
     color: 'red',
     url: '/pages/avatar/avatar',
-    avatarType: 1,
+    avatarType: 0,
     info: '献礼71周年华诞，为祖国母亲庆生'
 },
-// {
-//     icon: 'cuIcon-shendan',
-//     name: '圣诞贴纸',
-//     color: 'pink',
-//     url: '/pages/avatar/avatar',
-//     avatarType: 2,
-//     info: '把袜子翻过来，里朝外，挂起来，整个世界都是你的礼物'
-// },
 {
-    icon: 'cuIcon-new-year',
-    name: '新年贴纸',
+    icon: 'cuIcon-shengdanshu',
+    name: '圣诞贴纸',
     color: 'red',
     url: '/pages/avatar/avatar',
-    avatarType: 4,
+    avatarType: 1,
+    info: '把袜子翻过来，里朝外，挂起来，整个世界都是你的礼物'
+},
+{
+    icon: 'cuIcon-new-year',
+    name: '新年贴纸', 
+    color: 'red',
+    url: '/pages/avatar/avatar',
+    avatarType: 2,
     info: '金牛辞旧去，玉牛把春闹，嫦娥当空舞，福娃送喜到'
 },
 {
@@ -31,11 +31,11 @@ export const gridList = [{
     info: '但愿人长久，千里共婵娟'
 },
 {
-    icon: 'cuIcon-zhongqiu',
+    icon: 'cuIcon-meiguihua',
     name: '情人节贴纸',
     color: 'red',
     url: '/pages/avatar/avatar',
-    avatarType: 5,
+    avatarType: 4,
     info: '藏不住的喜欢，理直气壮就好了'
 },
 ]

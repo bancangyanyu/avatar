@@ -18,3 +18,12 @@ export const  PageUrl = {
     5:'https://cdn.jsdelivr.net/gh/bancangyanyu/image_cdn@main/image/530f7e4127322aae86930975617352b7.3eg5fhdx0pk0.png'
 }
 
+export const fabList = [
+    {iconPath:'/static/tabbar/back.png',selectedIconPath:'/static/tabbar/back_cur.png',text:'返回',active:true},
+    {iconPath:'/static/tabbar/image_cur.png',selectedIconPath:'/static/tabbar/image_cur.png',text:'头像',}
+]
+
+export const canvasSize = {
+    cansWidth:270,
+    cansHeight:270
+}

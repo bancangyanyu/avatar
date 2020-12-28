@@ -2,13 +2,8 @@
 	<view class="container" :style="{ height: '100vh' }">
 		<image class="page-bg" :style="{ height: '100vh' }" mode="scaleToFill" :src="pageImage"></image>
 		<view class="avatar-container grid justify-center" id="avatar-container" @touchstart="touchStart" @touchend="touchEnd" @touchmove="touchMove">
-			<view class="avatar-bg-border">
-				<image @touchstart="touchAvatarBg" 
-					class="bg avatar-bg" 
-					id="avatar-bg" 
-					:src="avatarPath"/>
-			</view>
-			<image 
+			<view class="avatar-bg-border"><image @touchstart="touchAvatarBg" class="bg avatar-bg" id="avatar-bg" :src="avatarUrl" /></view>
+			<image
 				v-if="currentMaskId > -1"
 				class="mask flip-horizontal"
 				:class="{ maskWithBorder: showBorder }"
@@ -18,27 +13,31 @@
 					top: maskCenterY - maskSize / 2 - 2 + 'px',
 					left: maskCenterX - maskSize / 2 - 2 + 'px',
 					transform: 'rotate(' + rotate + 'deg)' + 'scale(' + scale + ')' + 'rotateY(' + rotateY + 'deg)'
-				}"
+				}" 
 			/>
 			<text class="cuIcon-full handle circle" :class="{ hideHandle: !showBorder }" id="handle" :style="{ top: handleCenterY - 10 + 'px', left: handleCenterX - 10 + 'px' }" />
 		</view>
 		<view><canvas class="cans-id-mask" canvas-id="cans-id-mask" style="height:270px;width:270px;margin-left: auto;margin-right: auto;" /></view>
 		<view class="flex-sub text-center">
-			<view class="solid-bottom"><text class="text-green text-bold my-text">{{imageInfo}}</text></view>
+			<view class="solid-bottom">
+				<text class="text-yellow text-bold my-text text-shadow-info" :class="imgInfoColor">{{ imageInfo }}</text>
+			</view>
 		</view>
 		<view class="grid justify-around action-wrapper">
-			<view class="grid col-1"> 
-				<button id="btn-my-avatar" class="cu-btn round action-btn bg-white shadow " open-type="getUserInfo" @getuserinfo="getUserInfo">我的头像</button>
+			<view class="grid col-1">
+				<button id="btn-my-avatar" class="cu-btn round action-btn bg-yellow shadow " open-type="getUserInfo" @getuserinfo="getUserInfo" :class="btnColor">我的头像</button>
 			</view>
-			<view class="grid col-2"><button id="btn-save" class="cu-btn round action-btn bg-white shadow" @click="draw">保存头像</button></view>
-			<view class="grid col-3"><button id="btn-save" class="cu-btn round action-btn bg-white shadow" open-type="share">分享朋友</button></view>
-		</view> 
-		<view class="ad-wraper"><!-- <ad unit-id="adunit-e52230f6b15b325a"></ad> --></view>
+			<view class="grid col-2"><button id="btn-save" class="cu-btn round action-btn bg-yellow shadow" @click="draw" :class="btnColor">保存头像</button></view>
+			<view class="grid col-3"><button id="btn-save" class="cu-btn round action-btn bg-yellow shadow" open-type="share" :class="btnColor">分享朋友</button></view>
+		</view>
+		<view class="ad-wraper"><!-- <ad unit-id="adunit-e52230f6b15ba325a"></d> --></view>
 		<scroll-view class="scrollView mask-scroll-view" scroll-x="true">
-			<view v-for="(item, index) in imgList" :key="index" style="display: inline-flex;">
-				<image class="imgList" :src="`/static/image/${imgPath}/${index}.png`" :data-mask-id="index" @tap="changeMask" />
-			</view>
+			<view v-for="(item, index) in imgList" :key="index" style="display: inline-flex;"><image class="imgList" :src="item" :data-mask-id="index" @tap="changeMask" /></view>
 		</scroll-view>
+
+		<!-- </view> -->
+		<view class="avatar-list-bg"></view>
+		<!-- <uni-fab :content="fabList" direction="vertical" vertical="top" @trigger="handleTrigger" /> -->
 	</view>
 </template>
 <script>
@@ -46,21 +45,26 @@ const ImgPath = {
 	1: 'china',
 	2: 'chris',
 	3: 'holiday',
-	4:	'new'
+	4: 'new',
+	5: 'love'
 };
 import { range, AvatarUrl, PageUrl } from './index.js';
-
+import uniFab from '@/components/uni-fab/uni-fab.vue';
+import { fabList } from './index.js';
 export default {
-	data() { 
+	components: {
+		uniFab
+	},
+	data() {
 		return {
-			AvatarUrl, 
+			fabList,
+			AvatarUrl,
 			PageUrl,
 			duration: 15,
 			windowHeight: 0,
 			cansWidth: 270, // 宽度 px
 			cansHeight: 270, // 高度 px
 
-			imgList: range(0, 6, 1), // 第二个参数是个数
 			currentMaskId: -1,
 			showBorder: false,
 			maskCenterX: wx.getSystemInfoSync().windowWidth / 2,
@@ -80,40 +84,49 @@ export default {
 			handle_center_x: wx.getSystemInfoSync().windowWidth / 2 + 50 - 2,
 			handle_center_y: 300,
 			scaleCurrent: 1,
-			rotateCurrent: 0,
+			rotateCurrent: 0, 
 			touch_target: '',
 			start_x: 0,
 			start_y: 0,
 			avatarType: 1,
 			avatarPath: '',
-			imageInfo:'把袜子翻过来，里朝外，挂起来，整个世界都是你的礼物'
+			imageInfo: '把袜子翻过来，里朝外，挂起来，整个世界都是你的礼物',
+			imgList: [], // 第二个参数是个数
+			pageUrl: '',
+			avatarUrl: '',
+			maskPic:'',
+			isAndroid: getApp().globalData.IS_ANDROID,
 		};
 	},
 	computed: {
-		maskPic() {
-			const { avatarType, currentMaskId } = this;
-			const imgUrl = ImgPath[avatarType];
-			return `/static/image/${imgUrl}/${currentMaskId}.png`;
-		},
+		
 		pageImage() {
-			const { avatarType = 1, PageUrl } = this;
-			console.log('背景', PageUrl[avatarType]);
-			return PageUrl[avatarType];
+			const { pageUrl } = this;
+			return pageUrl;
 		},
 		imgPath() {
 			const { avatarType } = this;
 			return ImgPath[avatarType];
 		},
-		avatarPathImage: {
-			get() {
-				const { avatarType = 1, AvatarUrl } = this;
-				console.log('背景', AvatarUrl[avatarType]);
-				this.avatarPath = AvatarUrl[avatarType];
-				return AvatarUrl[avatarType];
-			},
-			set(val) {
-				this.avatarPath = val;
-			}
+		// avatarImage: {
+		// 	get() {
+		// 		const { avatarUrl } = this;
+		// 		this.avatarPath = avatarUrl
+		// 		return avatarUrl
+		// 	},
+		// 	set(val) {
+		// 		this.avatarPath = val;
+		// 	}
+		// },
+		imgInfoColor() {
+			const { avatarType } = this;
+			const color = avatarType === 5 ? ['text-white'] : '';
+			return color;
+		},
+		btnColor() {
+			const { avatarType } = this;
+			const color = avatarType === 5 ? ['bg-white'] : '';
+			return color;
 		}
 	},
 	onLoad(option) {
@@ -128,15 +141,14 @@ export default {
 			}
 		});
 		// #endif
-		this.handleOption(option)
+		this.handleOption(option);
 		console.log(option);
-
 	},
 	onShareAppMessage() {
-		const {imageInfo,avatarPathImage} = this
+		const { imageInfo, avatarUrl } = this;
 		return {
-			title: imageInfo,
-			imageUrl: avatarPathImage, 
+			title: "把袜子翻过来，里朝外，挂起来，整个世界都是你的礼物",
+			imageUrl: avatarUrl,
 			path: '/pages/index/index',
 			success: res => {
 				console.log(res);
@@ -144,12 +156,58 @@ export default {
 		};
 	},
 	methods: {
-			
-		handleOption(option){
-			const data = option?.item? JSON.parse(option?.item):{}
-			const { avatarType = 2 ,info} = data
+		handleTrigger(e) {
+			const { index } = e;
+			switch (index) {
+				case 0:
+					uni.navigateBack({
+						delta: 1
+					});
+					break;
+				default:
+					uni.navigateBack({
+						delta: 1
+					});
+					break;
+			}
+			console.log(e);
+		},
+		async handelGetPageUrl(type) {
+			uni.showLoading({
+				title: '加载中...'
+			});
+			const {
+				result: { data }
+			} = await uniCloud
+				.callFunction({
+					name: 'page-url-query',
+					data: {
+						type
+					}
+				})
+				.catch(err => {
+					uni.hideLoading();
+					uni.showModal({
+						content: `查询失败，错误信息为：${err.message}`,
+						showCancel: false
+					});
+					console.error(err);
+				});
+			const [pageData] = data;
+			const { photo_url } = pageData;
+			pageData.photo_url = photo_url.split('*');
+			this.imgList = pageData.photo_url;
+			this.avatarUrl = pageData.avatar_url;
+			this.pageUrl = pageData.page_url;
+			console.log('查询的数据', pageData);
+			uni.hideLoading();
+		},
+		handleOption(option) {
+			const data = option?.item ? JSON.parse(option?.item) : {};
+			const { avatarType = 1, info } = data;
 			this.avatarType = avatarType;
-			// this.imageInfo= info
+			this.imageInfo = info;
+			this.handelGetPageUrl(avatarType);
 			this.windowHeight = getApp().globalData.windowHeight;
 		},
 		touchAvatarBg() {
@@ -216,26 +274,26 @@ export default {
 		},
 		// 获取用户信息
 		getUserInfo(result) {
-			uni.showLoading({
-				title:"获取头像中"
-			})
 			if (result.detail.errMsg !== 'getUserInfo:ok') {
 				uni.showModal({
 					title: '获取用户头像失败',
 					content: '用户信息仅用于创建新的图片，请放心使用',
 					showCancel: false
-				}); 
+				});
 				return;
 			}
 			const { userInfo } = result.detail;
 			userInfo.avatarUrl = userInfo.avatarUrl.replace('132', '0'); // 使用最大分辨率头像 959 * 959
 			console.log('头像', userInfo.avatarUrl);
+			uni.showLoading({
+				title: '加载中...'
+			});
 			uni.downloadFile({
 				url: userInfo.avatarUrl,
 				success: res => {
 					uni.hideLoading();
-					this.avatarPath = res.tempFilePath;
-				},
+					this.avatarUrl = res.tempFilePath;
+				}, 
 				fail: e => {
 					console.log(e);
 					this.handleImageModal();
@@ -257,9 +315,11 @@ export default {
 			});
 		},
 		// 选择挂件
-		changeMask(e) {
-			
-			this.currentMaskId = e.target.dataset.maskId;
+		async changeMask(e) {
+			const {maskId } = e.target.dataset
+			this.currentMaskId = maskId
+			const maskPic = this.imgList[maskId]
+			this.maskPic = maskPic 
 			this.showBorder = true;
 		},
 		// 绘制头像
@@ -274,20 +334,38 @@ export default {
 			}
 			this.handleDrawImage();
 		},
-		handleDrawImage() {
-			const { maskPic, avatarPath, scale, rotate, isAndroid, cansWidth, cansHeight } = this;
-			let {mask_center_x, mask_center_y} = this
+		getImageInfo(imgUrl) {
+			 uni.showLoading({
+			 	title:"加载中"
+			 })
+			return new Promise((reslove,reject) => {
+				uni.getImageInfo({
+					src: imgUrl,
+					success:  (image)=> {
+						console.log("获取的图片信息",image.path)
+						uni.hideLoading()
+						reslove(image.path)
+					}
+				})
+			})
+		},
+		async handleDrawImage() { 
+			const {  scale, rotate, isAndroid, cansWidth, cansHeight ,currentMaskId} = this;
+			let { mask_center_x, mask_center_y } = this;
 			// 创建节点选择器
 			// 口罩中心位置的计算是从屏幕左上角开始，所以我们需要获取头像图片的位置，来得到口罩相对头像的位置
 			const query = wx.createSelectorQuery();
+			// this.getImageInfo(avatarUrl, 'avatarUrl'); 
 			query.select('#avatar-bg').boundingClientRect();
-			query.exec(res => {
+			query.exec( async (res) => {
 				//res就是 所有标签为#的元素的信息的数组
 				mask_center_x = mask_center_x - res[0].left;
 				mask_center_y = mask_center_y - res[0].top;
 				const pc = wx.createCanvasContext('cans-id-mask');
 				const windowWidth = wx.getSystemInfoSync().windowWidth;
 				const mask_size = 100 * scale;
+				const path = await this.getImageInfo(this.maskPic);
+				const avatarPath = await this.getImageInfo(this.avatarUrl);
 				pc.clearRect(0, 0, cansWidth, cansHeight);
 				pc.drawImage(avatarPath, 0, 0, cansWidth, cansHeight);
 				pc.translate(mask_center_x, mask_center_y);
@@ -295,9 +373,10 @@ export default {
 				if (isAndroid) {
 					this.rotateY == 180 && pc.scale(-1, 1);
 				}
-				pc.drawImage(maskPic, -mask_size / 2, -mask_size / 2, mask_size, mask_size);
-				pc.draw();
-				this.saveCans();
+				pc.drawImage(path, -mask_size / 2, -mask_size / 2, mask_size, mask_size);
+				await pc.draw(false,()=>{  
+					this.saveCans();
+				}); 
 			});
 		},
 		handleSaveSuccess(res) {
@@ -310,7 +389,7 @@ export default {
 						title: '保存成功',
 						content: '头像已经在您的相册里啦',
 						showCancel: false
-					});
+					})
 					uni.vibrateShort({
 						success: () => {
 							console.log('vibrateShort');
@@ -351,10 +430,12 @@ export default {
 					destWidth: this.cansWidth * 3,
 					destHeight: this.cansHeight * 3,
 					canvasId: 'cans-id-mask',
+					// fileType: 'png',
 					success: res => {
+						console.log('canvas', res.tempFilePath);
 						this.handleSaveSuccess(res);
 					},
-					fail:(res)=> {
+					fail: res => {
 						uni.hideLoading();
 					}
 				},
@@ -374,6 +455,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$border-radius: 20rpx;
+$boder: 12rpx;
 .avatar-container {
 	height: 290px;
 	width: 100%;
@@ -383,7 +466,7 @@ export default {
 }
 
 .avatar-bg-border {
-	border: 6px solid white;
+	border: $boder solid white;
 	border-radius: 10px;
 	width: 282px;
 	height: 282px;
@@ -395,6 +478,7 @@ export default {
 	height: 270px;
 	width: 270px;
 	background-color: #fff;
+	border-radius: $border-radius;
 }
 
 .action-wrapper {
@@ -417,6 +501,7 @@ export default {
 	position: absolute;
 	top: 100px;
 	border: 3px solid rgba(255, 255, 255, 0);
+	border-radius: $border-radius;
 }
 
 .maskWithBorder {
@@ -447,11 +532,11 @@ export default {
 }
 
 .scrollView {
-	width: 100%; 
+	width: 100%;
 	position: absolute;
 	bottom: 30rpx;
 	white-space: nowrap;
-} 
+}
 
 .infoView {
 	width: 95%;
@@ -468,7 +553,7 @@ export default {
 .imgList {
 	height: 65px;
 	width: 65px;
-	border: 2px solid white;
+	border: 4rpx solid white;
 	border-radius: 5px;
 	margin: 10px 10px 10px 10px;
 	z-index: 9999999;
@@ -489,12 +574,22 @@ export default {
 
 .my-text {
 	font-size: 40rpx;
-	color: #FFF;
 }
 
 .ad-wraper {
 	min-height: 110rpx;
 	margin: 30px auto 0;
 	width: 700rpx;
+}
+.avatar-list-bg {
+	width: 100%;
+	height: 230rpx;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: rgba($color: #090001, $alpha: 0.4);
+}
+button {
+	z-index: 999;
 }
 </style>

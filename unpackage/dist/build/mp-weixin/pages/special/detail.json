@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "专题详情",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "cu-button": "/components/cu-button/cu-button",
+    "uni-image-list": "/components/uni-image-list/uni-image-list",
+    "uni-fab": "/components/uni-fab/uni-fab"
+  }
+}
