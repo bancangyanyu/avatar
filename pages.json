@@ -1,6 +1,23 @@
 {
 	"pages": [
 		{
+		    "path" : "pages/avatar/avatar",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "头像贴纸",
+		        "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+		    }
+		},
+		{
+			"path": "pages/index/index",
+			"style": { 
+				"disableScroll": true,
+				"navigationStyle": "custom"
+			}
+		}
+		,
+		{
             "path" : "pages/images/images",
             "style" :                                                                                    
             {
@@ -19,32 +36,8 @@
 				"navigationStyle": "custom"
             }
             
-        },
-		{
-			"path": "pages/index/index",
-			"style": { 
-				"disableScroll": true,
-				"navigationStyle": "custom"
-			}
-		}
-        ,{
-            "path" : "pages/avatar/avatar",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "头像贴纸",
-                "enablePullDownRefresh": false,
-				"navigationStyle": "custom"
-            }
-            
         }
-        ,{
-            "path" : "pages/news/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-        }
+
         ,{
             "path" : "pages/mannage/index/index",
             "style" :                                                                                    
@@ -96,29 +89,16 @@
 		"backgroundColor": "#ffffff",
 		"list": [
 			{
-				"pagePath": "pages/images/images",
-				"text": "头像",
-				"iconPath": "static/tabbar/image.png",
-				"selectedIconPath": "static/tabbar/image_cur.png"
-			},
-			{ 
-				"pagePath": "pages/special/special",
-				"text": "专题",
-				"iconPath": "static/tabbar/special.png",
-				"selectedIconPath": "static/tabbar/special_cur.png"
-			}, 
-			
-			{ 
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/avatar/avatar", 
 				"text": "贴图",
 				"iconPath": "static/tabbar/img.png",
 				"selectedIconPath": "static/tabbar/img_cur.png"
 			},
-			{    
-				"pagePath": "pages/main/main",
-				"text": "其他",
-				"iconPath": "static/tabbar/other.png",
-				"selectedIconPath": "static/tabbar/other_cur.png"
+			{
+				"pagePath": "pages/images/images",
+				"text": "头像",
+				"iconPath": "static/tabbar/image.png",
+				"selectedIconPath": "static/tabbar/image_cur.png"
 			}
 		]
 	},

@@ -7,20 +7,20 @@
 				v-if="currentMaskId > -1"
 				class="mask flip-horizontal"
 				:class="{ maskWithBorder: showBorder }"
-				id="mask"
+				id="mask" 
 				:src="maskPic"
 				:style="{
 					top: maskCenterY - maskSize / 2 - 2 + 'px',
 					left: maskCenterX - maskSize / 2 - 2 + 'px',
 					transform: 'rotate(' + rotate + 'deg)' + 'scale(' + scale + ')' + 'rotateY(' + rotateY + 'deg)'
-				}" 
+				}"  
 			/>
 			<text class="cuIcon-full handle circle" :class="{ hideHandle: !showBorder }" id="handle" :style="{ top: handleCenterY - 10 + 'px', left: handleCenterX - 10 + 'px' }" />
 		</view>
-		<view><canvas class="cans-id-mask" canvas-id="cans-id-mask" style="height:270px;width:270px;margin-left: auto;margin-right: auto;" /></view>
+		<view><canvas class="cans-id-mask" canvas-id="cans-id-mask" style="height:220px;width:220px;margin-left: auto;margin-right: auto;" /></view>
 		<view class="flex-sub text-center">
 			<view class="solid-bottom">
-				<text class="text-yellow text-bold my-text text-shadow-info" :class="imgInfoColor">{{ imageInfo }}</text>
+				<text class="text-yellow text-bold my-text " :class="imgInfoColor">{{ imageInfo }}</text>
 			</view>
 		</view>
 		<view class="grid justify-around action-wrapper">
@@ -31,7 +31,10 @@
 			<view class="grid col-3"><button id="btn-save" class="cu-btn round action-btn bg-yellow shadow" open-type="share" :class="btnColor">分享朋友</button></view>
 		</view>
 		<view class="ad-wraper"><!-- <ad unit-id="adunit-e52230f6b15ba325a"></d> --></view>
-		<scroll-view class="scrollView mask-scroll-view" scroll-x="true">
+		<view class="tab-list">
+			<uni-tab :tabList='tabList' :tabCur='tabActive' @change='onTabSelect' selectClass='text-white'></uni-tab>
+		</view>
+		<scroll-view class="scrollView mask-scroll-view" scroll-x="true"> 
 			<view v-for="(item, index) in imgList" :key="index" style="display: inline-flex;"><image class="imgList" :src="item" :data-mask-id="index" @tap="changeMask" /></view>
 		</scroll-view>
 
@@ -54,17 +57,23 @@ import uniFab from '@/components/uni-fab/uni-fab.vue';
 import { fabList } from './index.js';
 export default {
 	components: {
-		uniFab
+		uniFab,
 	},
 	data() {
 		return {
+			tabList:[
+				{name:"国庆",icon:""},
+				{name:"NBA",icon:""},
+				{name:"圣诞",icon:""},
+			],
+			tabActive:0,
 			fabList,
 			AvatarUrl,
 			PageUrl,
 			duration: 15,
 			windowHeight: 0,
-			cansWidth: 270, // 宽度 px
-			cansHeight: 270, // 高度 px
+			cansWidth: 220, // 宽度 px
+			cansHeight: 220, // 高度 px
 
 			currentMaskId: -1,
 			showBorder: false,
@@ -89,9 +98,9 @@ export default {
 			touch_target: '',
 			start_x: 0,
 			start_y: 0,
-			avatarType: 1,
+			avatarType: 1, 
 			avatarPath: '',
-			imageInfo: '把袜子翻过来，里朝外，挂起来，整个世界都是你的礼物',
+			imageInfo: '圣诞快乐呀！',
 			imgList: [], // 第二个参数是个数
 			pageUrl: '',
 			avatarUrl: '',
@@ -143,7 +152,7 @@ export default {
 		});
 		// #endif
 		this.handleOption(option);
-		console.log(option);
+		console.log(option); 
 	},
 	//分享到朋友圈
 	onShareTimeline() {
@@ -166,6 +175,11 @@ export default {
 		};
 	},
 	methods: {
+		onTabSelect(index){
+			this.tabActive = index
+			this.handelGetPageUrl(index+1)
+			
+		},
 		handleTrigger(e) {
 			const { index } = e;
 			switch (index) {
@@ -187,7 +201,7 @@ export default {
 			}
 			console.log(e);
 		},
-		async handelGetPageUrl(type) {
+		async handelGetPageUrl(type=1) {
 			uni.showLoading({
 				title: '加载中...'
 			});
@@ -214,6 +228,12 @@ export default {
 			this.imgList = pageData.photo_url;
 			this.avatarUrl = pageData.avatar_url;
 			this.pageUrl = pageData.page_url;
+			const INFO = [
+				'🇨🇳 盛世华章，头像换装庆华诞！',
+				"🏀 换上主队球衣打造你的热血NBA！",
+				"🎄 圣诞帽+小鹿角，点亮你的节日！"
+			]
+			this.imageInfo = INFO[type-1]
 			console.log('查询的数据', pageData);
 			uni.hideLoading();
 		},
@@ -473,9 +493,9 @@ export default {
 $border-radius: 20rpx;
 $boder: 12rpx;
 .avatar-container {
-	height: 290px;
+	height: 234px;
 	width: 100%;
-	margin-top: 185rpx;
+	margin-top: 125rpx;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -483,15 +503,15 @@ $boder: 12rpx;
 .avatar-bg-border {
 	border: $boder solid white;
 	border-radius: 10px;
-	width: 282px;
-	height: 282px;
+	width: 230px;
+	height: 230px;
 }
 
 .avatar-bg {
 	position: absolute;
 	z-index: 0;
-	height: 270px;
-	width: 270px;
+	height: 220px;
+	width: 220px;
 	background-color: #fff;
 	border-radius: $border-radius;
 }
@@ -592,7 +612,7 @@ $boder: 12rpx;
 }
 
 .ad-wraper {
-	min-height: 110rpx;
+	min-height: 100rpx;
 	margin: 30px auto 0;
 	width: 700rpx;
 }

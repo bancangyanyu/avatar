@@ -43,21 +43,18 @@
 .tabList .tabItem text {
   line-height: 44rpx;
   color: #666;
-  -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
 .tabList .tabItem .activeLine {
   width: 60rpx;
   height: 10rpx;
-  -webkit-border-radius: 4rpx;
-          border-radius: 4rpx;
+  border-radius: 4rpx;
   background-color: #ff9502;
   margin-top: 8rpx;
   margin-left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   opacity: 0;
-  -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
 .tabList .tabItem:last-child {

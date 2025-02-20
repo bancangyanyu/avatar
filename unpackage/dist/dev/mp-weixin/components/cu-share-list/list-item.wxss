@@ -26,33 +26,17 @@
 /* 文章场景相关 */
 .content.data-v-6f9c7a6f {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .context-box.data-v-6f9c7a6f {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 .context-box .list-info.data-v-6f9c7a6f {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   width: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -64,8 +48,6 @@
   font-size: 32rpx;
 }
 .context-box .list-info .info-title .ul.data-v-6f9c7a6f {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
 }
 .context-box .list-info .info-title .ul .item.data-v-6f9c7a6f {

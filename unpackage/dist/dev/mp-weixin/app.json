@@ -1,10 +1,9 @@
 {
   "pages": [
+    "pages/avatar/avatar",
+    "pages/index/index",
     "pages/images/images",
     "pages/main/main",
-    "pages/index/index",
-    "pages/avatar/avatar",
-    "pages/news/index",
     "pages/mannage/index/index",
     "pages/mannage/update/update",
     "pages/images/index",
@@ -25,31 +24,18 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/images/images",
-        "text": "头像",
-        "iconPath": "static/tabbar/image.png",
-        "selectedIconPath": "static/tabbar/image_cur.png"
-      },
-      {
-        "pagePath": "pages/special/special",
-        "text": "专题",
-        "iconPath": "static/tabbar/special.png",
-        "selectedIconPath": "static/tabbar/special_cur.png"
-      },
-      {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/avatar/avatar",
         "text": "贴图",
         "iconPath": "static/tabbar/img.png",
         "selectedIconPath": "static/tabbar/img_cur.png"
       },
       {
-        "pagePath": "pages/main/main",
-        "text": "其他",
-        "iconPath": "static/tabbar/other.png",
-        "selectedIconPath": "static/tabbar/other_cur.png"
+        "pagePath": "pages/images/images",
+        "text": "头像",
+        "iconPath": "static/tabbar/image.png",
+        "selectedIconPath": "static/tabbar/image_cur.png"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap91.json"
+  "usingComponents": {}
 }

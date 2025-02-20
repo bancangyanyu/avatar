@@ -26,11 +26,8 @@
 /* 文章场景相关 */
 .cu-tag-list.data-v-d9c9e7fa {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
+  flex-wrap: wrap;
   padding: 20rpx 15rpx;
 }
 .cu-tag-list .cu-tag-item.data-v-d9c9e7fa {

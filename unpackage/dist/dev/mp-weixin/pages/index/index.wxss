@@ -33,8 +33,7 @@
 }
 .avatar-bg-border.data-v-57280228 {
   border: 12rpx solid white;
-  -webkit-border-radius: 10px;
-          border-radius: 10px;
+  border-radius: 10px;
   width: 282px;
   height: 282px;
 }
@@ -44,8 +43,7 @@
   height: 270px;
   width: 270px;
   background-color: #fff;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
 }
 .action-wrapper.data-v-57280228 {
   padding-top: 30rpx;
@@ -65,8 +63,7 @@
   position: absolute;
   top: 100px;
   border: 3px solid rgba(255, 255, 255, 0);
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
 }
 .maskWithBorder.data-v-57280228 {
   border: dashed 3px white;
@@ -75,8 +72,7 @@
   display: none;
 }
 .circle.data-v-57280228 {
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   font-size: 15px;
   color: #000;
   line-height: 25px;
@@ -106,16 +102,14 @@
   background-color: white;
   margin: 10px;
   padding: 1px 5px;
-  -webkit-border-radius: 5px;
-          border-radius: 5px;
+  border-radius: 5px;
   white-space: pre-wrap;
 }
 .imgList.data-v-57280228 {
   height: 65px;
   width: 65px;
   border: 4rpx solid white;
-  -webkit-border-radius: 5px;
-          border-radius: 5px;
+  border-radius: 5px;
   margin: 10px 10px 10px 10px;
   z-index: 9999999;
 }

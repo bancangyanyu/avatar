@@ -26,22 +26,14 @@
 /* 文章场景相关 */
 .cu-dialog.data-v-6d0fd3bc {
   width: 568rpx;
-  -webkit-border-radius: 8rpx;
-          border-radius: 8rpx;
+  border-radius: 8rpx;
   background-color: transparent;
   padding: 20rpx;
 }
 .cu-dialog .title.data-v-6d0fd3bc {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
   font-weight: bold;
 }
 .cu-dialog .title text.data-v-6d0fd3bc {
@@ -52,27 +44,16 @@
 }
 .cu-dialog .modal-content.data-v-6d0fd3bc {
   width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-top: 10rpx;
   padding: 20rpx;
 }
 .cu-dialog .modal-content .left.data-v-6d0fd3bc {
   width: 50%;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .cu-dialog .modal-content .left image.data-v-6d0fd3bc {
   height: 90rpx;
@@ -84,16 +65,9 @@
 }
 .cu-dialog .modal-content .right.data-v-6d0fd3bc {
   width: 50%;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .cu-dialog .modal-content .right image.data-v-6d0fd3bc {
   height: 90rpx;
@@ -105,15 +79,9 @@
 }
 .cu-dialog .close.data-v-6d0fd3bc {
   color: #FFF;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   z-index: 999;
 }
 .cu-dialog .close text.data-v-6d0fd3bc {
@@ -121,8 +89,7 @@
   margin-top: 52rpx;
 }
 .cu-dialog .cu-content.data-v-6d0fd3bc {
-  -webkit-border-radius: 8rpx;
-          border-radius: 8rpx;
+  border-radius: 8rpx;
   padding: 20rpx 3rpx;
 }
 

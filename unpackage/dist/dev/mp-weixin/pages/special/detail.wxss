@@ -28,13 +28,11 @@
   background-color: #1e1314;
 }
 .top {
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), color-stop(36%, #fff), to(#000));
-  background: -webkit-linear-gradient(top, #fff 0%, #fff 36%, #000 100%);
   background: linear-gradient(to bottom, #fff 0%, #fff 36%, #000 100%);
 }
 .top .img image {
   width: 100%;
-  -webkit-mask: -webkit-gradient(linear, left top, left bottom, from(black), to(transparent));
+  -webkit-mask: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0)));
 }
 .top .img .content {
   bottom: 0;

@@ -1,1 +1,1 @@
-<view class="img-list  data-v-ffd2ac68"><block wx:for="{{data}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="href data-v-ffd2ac68"><img-item vue-id="{{'fa81de8c-1-'+index}}" data="{{item}}" class="data-v-ffd2ac68" bind:__l="__l"></img-item></view></block></view>
+<view class="img-list data-v-ffd2ac68"><block wx:for="{{data}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="href data-v-ffd2ac68"><img-item vue-id="{{'fa81de8c-1-'+index}}" data="{{item}}" class="data-v-ffd2ac68" bind:__l="__l"></img-item></view></block></view>

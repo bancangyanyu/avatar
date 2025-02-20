@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "navigationStyle": "custom",
   "usingComponents": {
+    "uni-tab": "/components/uni-tab/uni-tab",
     "uni-fab": "/components/uni-fab/uni-fab"
   }
 }
