@@ -88,6 +88,8 @@ swiper {
     line-height: 90upx;
     margin: 0 10upx;
     padding: 0 20upx;
+	font-weight: 600;
+	color: #fff;
 }
 
 .wuc-tab-item.cur {
@@ -126,7 +128,9 @@ swiper {
 .text-orange{
   color: #f37b1d
 }
-
+.text-yellow{
+	color: #ffff00;
+}
 .text-xl {
 	font-size: 36upx;
 }

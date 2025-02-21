@@ -104,9 +104,6 @@ try {
     uniTab: function () {
       return __webpack_require__.e(/*! import() | components/uni-tab/uni-tab */ "components/uni-tab/uni-tab").then(__webpack_require__.bind(null, /*! @/components/uni-tab/uni-tab.vue */ 133))
     },
-    uniFab: function () {
-      return __webpack_require__.e(/*! import() | components/uni-fab/uni-fab */ "components/uni-fab/uni-fab").then(__webpack_require__.bind(null, /*! @/components/uni-fab/uni-fab.vue */ 140))
-    },
   }
 } catch (e) {
   if (

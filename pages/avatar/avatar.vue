@@ -32,16 +32,16 @@
 		</view>
 		<view class="ad-wraper"><!-- <ad unit-id="adunit-e52230f6b15ba325a"></d> --></view>
 		<view class="tab-list">
-			<uni-tab :tabList='tabList' :tabCur='tabActive' @change='onTabSelect' selectClass='text-white'></uni-tab>
+			<uni-tab :tabList='tabList' :tabCur='tabActive' @change='onTabSelect' selectClass='text-yellow'></uni-tab>
 		</view>
-		<scroll-view class="scrollView mask-scroll-view" scroll-x="true"> 
+		<scroll-view class="scrollView mask-scroll-view" scroll-x="true">  
 			<view v-for="(item, index) in imgList" :key="index" style="display: inline-flex;"><image class="imgList" :src="item" :data-mask-id="index" @tap="changeMask" /></view>
 		</scroll-view>
 
 		<!-- </view> -->
 		<view class="avatar-list-bg"></view>
 		
-		<uni-fab :content="fabList" direction="vertical" vertical="top" @trigger="handleTrigger" />
+		<!-- <uni-fab :content="fabList" direction="vertical" vertical="top" @trigger="handleTrigger" /> -->
 	</view>
 </template>
 <script>
