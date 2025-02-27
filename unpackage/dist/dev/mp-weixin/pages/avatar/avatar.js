@@ -216,6 +216,10 @@ var _index = __webpack_require__(/*! ./index.js */ 61);
 //
 //
 //
+//
+//
+//
+//
 
 var ImgPath = {
   1: 'china',
@@ -229,6 +233,7 @@ var uniFab = function uniFab() {
     return resolve(__webpack_require__(/*! @/components/uni-fab/uni-fab.vue */ 140));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
+var videoAd = null;
 var _default = {
   components: {
     uniFab: uniFab
@@ -322,6 +327,31 @@ var _default = {
     }
   },
   onLoad: function onLoad(option) {
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    // if (wx.createRewardedVideoAd) {
+    //   videoAd = wx.createRewardedVideoAd({
+    //     adUnitId: 'adunit-0efd6c94cf468f53' 
+    //   })
+    //   videoAd.onLoad(() => {
+    // 	  console.log("111111");
+    //   })
+    //   videoAd.onError((err) => {
+    //     console.error('激励视频光告加载失败', err)
+    //   })
+    //   videoAd.onClose((res) => {})
+    // }
+    // // 用户触发广告后，显示激励视频广告
+    // if (videoAd) {
+    //   videoAd.show().catch(() => {
+    //     // 失败重试
+    //     videoAd.load()
+    //       .then(() => videoAd.show())
+    //       .catch(err => {
+    //         console.error('激励视频 广告显示失败', err)
+    //       })
+    //   })
+    // }
+
     wx.showShareMenu({
       menus: ['shareAppMessage', 'shareTimeline'],
       success: function success(res) {
@@ -416,7 +446,7 @@ var _default = {
                 photo_url = pageData.photo_url;
                 pageData.photo_url = photo_url.split('*');
                 _this.imgList = pageData.photo_url;
-                _this.avatarUrl = pageData.avatar_url;
+                _this.avatarUrl = _this.avatarUrl || pageData.avatar_url;
                 _this.pageUrl = pageData.page_url;
                 INFO = ['🇨🇳 盛世华章，头像换装庆华诞！', "🏀 换上主队球衣打造你的热血NBA！", "🎄 圣诞帽+小鹿角，点亮你的节日！"];
                 _this.imageInfo = INFO[type - 1];
@@ -501,44 +531,18 @@ var _default = {
       this.scaleCurrent = this.scale;
       this.rotateCurrent = this.rotate;
     },
-    // 获取用户信息
-    getUserInfo: function getUserInfo(result) {
-      var _this2 = this;
-      if (result.detail.errMsg !== 'getUserInfo:ok') {
-        uni.showModal({
-          title: '获取用户头像失败',
-          content: '用户信息仅用于创建新的图片，请放心使用',
-          showCancel: false
-        });
-        return;
-      }
-      var userInfo = result.detail.userInfo;
-      userInfo.avatarUrl = userInfo.avatarUrl.replace('132', '0'); // 使用最大分辨率头像 959 * 959
-      console.log('头像', userInfo.avatarUrl);
-      uni.showLoading({
-        title: '加载中...'
-      });
-      uni.downloadFile({
-        url: userInfo.avatarUrl,
-        success: function success(res) {
-          uni.hideLoading();
-          _this2.avatarUrl = res.tempFilePath;
-        },
-        fail: function fail(e) {
-          console.log(e);
-          _this2.handleImageModal();
-        }
-      });
+    onChooseavatar: function onChooseavatar(e) {
+      this.avatarUrl = e.detail.avatarUrl;
     },
     handleImageModal: function handleImageModal() {
-      var _this3 = this;
+      var _this2 = this;
       uni.hideLoading();
       uni.showModal({
         title: '图片加载超时',
         content: '网络异常，请稍后重试',
         success: function success(res) {
           if (res.confirm) {
-            _this3.downloadAvatarAndPaintAll();
+            _this2.downloadAvatarAndPaintAll();
           } else if (res.cancel) {
             console.log('用户点击取消');
           }
@@ -547,7 +551,7 @@ var _default = {
     },
     // 选择挂件
     changeMask: function changeMask(e) {
-      var _this4 = this;
+      var _this3 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
         var maskId, maskPic;
         return _regenerator.default.wrap(function _callee2$(_context2) {
@@ -555,10 +559,10 @@ var _default = {
             switch (_context2.prev = _context2.next) {
               case 0:
                 maskId = e.target.dataset.maskId;
-                _this4.currentMaskId = maskId;
-                maskPic = _this4.imgList[maskId];
-                _this4.maskPic = maskPic;
-                _this4.showBorder = true;
+                _this3.currentMaskId = maskId;
+                maskPic = _this3.imgList[maskId];
+                _this3.maskPic = maskPic;
+                _this3.showBorder = true;
               case 5:
               case "end":
                 return _context2.stop();
@@ -595,15 +599,15 @@ var _default = {
       });
     },
     handleDrawImage: function handleDrawImage() {
-      var _this5 = this;
+      var _this4 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4() {
         var scale, rotate, isAndroid, cansWidth, cansHeight, currentMaskId, mask_center_x, mask_center_y, query;
         return _regenerator.default.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                scale = _this5.scale, rotate = _this5.rotate, isAndroid = _this5.isAndroid, cansWidth = _this5.cansWidth, cansHeight = _this5.cansHeight, currentMaskId = _this5.currentMaskId;
-                mask_center_x = _this5.mask_center_x, mask_center_y = _this5.mask_center_y; // 创建节点选择器
+                scale = _this4.scale, rotate = _this4.rotate, isAndroid = _this4.isAndroid, cansWidth = _this4.cansWidth, cansHeight = _this4.cansHeight, currentMaskId = _this4.currentMaskId;
+                mask_center_x = _this4.mask_center_x, mask_center_y = _this4.mask_center_y; // 创建节点选择器
                 // 口罩中心位置的计算是从屏幕左上角开始，所以我们需要获取头像图片的位置，来得到口罩相对头像的位置
                 query = wx.createSelectorQuery(); // this.getImageInfo(avatarUrl, 'avatarUrl'); 
                 query.select('#avatar-bg').boundingClientRect();
@@ -621,11 +625,11 @@ var _default = {
                             windowWidth = wx.getSystemInfoSync().windowWidth;
                             mask_size = 100 * scale;
                             _context3.next = 7;
-                            return _this5.getImageInfo(_this5.maskPic);
+                            return _this4.getImageInfo(_this4.maskPic);
                           case 7:
                             path = _context3.sent;
                             _context3.next = 10;
-                            return _this5.getImageInfo(_this5.avatarUrl);
+                            return _this4.getImageInfo(_this4.avatarUrl);
                           case 10:
                             avatarPath = _context3.sent;
                             pc.clearRect(0, 0, cansWidth, cansHeight);
@@ -633,12 +637,12 @@ var _default = {
                             pc.translate(mask_center_x, mask_center_y);
                             pc.rotate(rotate * Math.PI / 180);
                             if (isAndroid) {
-                              _this5.rotateY == 180 && pc.scale(-1, 1);
+                              _this4.rotateY == 180 && pc.scale(-1, 1);
                             }
                             pc.drawImage(path, -mask_size / 2, -mask_size / 2, mask_size, mask_size);
                             _context3.next = 19;
                             return pc.draw(false, function () {
-                              _this5.saveCans();
+                              _this4.saveCans();
                             });
                           case 19:
                           case "end":
@@ -660,7 +664,7 @@ var _default = {
       }))();
     },
     handleSaveSuccess: function handleSaveSuccess(res) {
-      var _this6 = this;
+      var _this5 = this;
       var tempFilePath = res.tempFilePath;
       uni.hideLoading();
       uni.saveImageToPhotosAlbum({
@@ -679,7 +683,7 @@ var _default = {
         },
         fail: function fail(error) {
           if (error.errMsg.indexOf('fail')) {
-            _this6.hadleSaveErrorModal();
+            _this5.hadleSaveErrorModal();
           }
         }
       });
@@ -702,7 +706,7 @@ var _default = {
       });
     },
     handleSaveImage: function handleSaveImage() {
-      var _this7 = this;
+      var _this6 = this;
       uni.canvasToTempFilePath({
         x: 0,
         y: 0,
@@ -714,7 +718,7 @@ var _default = {
         // fileType: 'png',
         success: function success(res) {
           console.log('canvas', res.tempFilePath);
-          _this7.handleSaveSuccess(res);
+          _this6.handleSaveSuccess(res);
         },
         fail: function fail(res) {
           uni.hideLoading();

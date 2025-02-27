@@ -11,7 +11,7 @@
 	const docId = 'mp_launch_config_doc';
 	export default {
 		globalData: {
-			windowHeight: windowHeight,
+			windowHeight: windowHeight, 
 			statusBarHeight: statusBarHeight,
 			SHOW_TIP: false,
 			duration: 20,

@@ -6,6 +6,7 @@
     "uni-fab": "/components/uni-fab/uni-fab",
     "cu-search": "/components/cu-search/search",
     "uni-label-card": "/components/uni-label/index",
-    "cu-tag-list": "/components/cu-tag/list"
+    "cu-tag-list": "/components/cu-tag/list",
+    "cu-tab": "/components/cu-tab/tab-nav"
   }
 }

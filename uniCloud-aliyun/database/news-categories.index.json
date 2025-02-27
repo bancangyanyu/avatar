@@ -1,0 +1,14 @@
+[
+  {
+    "IndexName": "opendb-news-categories_openid_index_",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        {
+          "Name": "_openid",
+          "Direction": "1"
+        }
+      ],
+      "MgoIsUnique": false
+    }
+  }
+]

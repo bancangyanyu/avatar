@@ -27,7 +27,7 @@
 .avatar-container.data-v-3cba10b4 {
   height: 234px;
   width: 100%;
-  margin-top: 125rpx;
+  margin-top: 175rpx;
   margin-left: auto;
   margin-right: auto;
 }
@@ -94,6 +94,10 @@
   bottom: 30rpx;
   white-space: nowrap;
 }
+.scrollView .tab-list.data-v-3cba10b4 {
+  margin-top: 20rpx;
+  background: rgba(9, 0, 1, 0.4);
+}
 .infoView.data-v-3cba10b4 {
   width: 95%;
   position: absolute;
@@ -127,12 +131,12 @@
 }
 .ad-wraper.data-v-3cba10b4 {
   min-height: 100rpx;
-  margin: 30px auto 0;
+  margin: 10px auto 0;
   width: 700rpx;
 }
 .avatar-list-bg.data-v-3cba10b4 {
   width: 100%;
-  height: 230rpx;
+  height: 200rpx;
   position: absolute;
   bottom: 0;
   left: 0;

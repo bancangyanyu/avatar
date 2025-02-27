@@ -25,19 +25,23 @@
 		</view>
 		<view class="grid justify-around action-wrapper">
 			<view class="grid col-1">
-				<button id="btn-my-avatar" class="cu-btn round action-btn bg-yellow shadow " open-type="getUserInfo" @getuserinfo="getUserInfo" :class="btnColor">我的头像</button>
+				<button id="btn-my-avatar" class="cu-btn round action-btn bg-yellow shadow " open-type="chooseAvatar" @chooseavatar="onChooseavatar" :class="btnColor">我的头像</button>
 			</view>
 			<view class="grid col-2"><button id="btn-save" class="cu-btn round action-btn bg-yellow shadow" @click="draw" :class="btnColor">保存头像</button></view>
 			<view class="grid col-3"><button id="btn-save" class="cu-btn round action-btn bg-yellow shadow" open-type="share" :class="btnColor">分享朋友</button></view>
 		</view>
-		<view class="ad-wraper"><!-- <ad unit-id="adunit-e52230f6b15ba325a"></d> --></view>
-		<view class="tab-list">
-			<uni-tab :tabList='tabList' :tabCur='tabActive' @change='onTabSelect' selectClass='text-yellow'></uni-tab>
+		<view class="ad-wraper">
+			<ad-custom unit-id="adunit-a705da38be44f5f6" ></ad-custom>
 		</view>
-		<scroll-view class="scrollView mask-scroll-view" scroll-x="true">  
-			<view v-for="(item, index) in imgList" :key="index" style="display: inline-flex;"><image class="imgList" :src="item" :data-mask-id="index" @tap="changeMask" /></view>
-		</scroll-view>
 
+		<view class="scrollView">
+			<view class="tab-list">
+				<uni-tab :tabList='tabList' :tabCur='tabActive' @change='onTabSelect' selectClass='text-yellow'></uni-tab>
+			</view>
+			<scroll-view class="mask-scroll-view" scroll-x="true">
+				<view v-for="(item, index) in imgList" :key="index" style="display: inline-flex;"><image class="imgList" :src="item" :data-mask-id="index" @tap="changeMask" /></view>
+			</scroll-view>
+		</view>
 		<!-- </view> -->
 		<view class="avatar-list-bg"></view>
 		
@@ -55,6 +59,8 @@ const ImgPath = {
 import { range, AvatarUrl, PageUrl } from './index.js';
 import uniFab from '@/components/uni-fab/uni-fab.vue';
 import { fabList } from './index.js';
+let videoAd = null
+
 export default {
 	components: {
 		uniFab,
@@ -140,6 +146,30 @@ export default {
 		}
 	},
 	onLoad(option) {
+		// 在页面onLoad回调事件中创建激励视频广告实例
+		// if (wx.createRewardedVideoAd) {
+		//   videoAd = wx.createRewardedVideoAd({
+		//     adUnitId: 'adunit-0efd6c94cf468f53' 
+		//   })
+		//   videoAd.onLoad(() => {
+		// 	  console.log("111111");
+		//   })
+		//   videoAd.onError((err) => {
+		//     console.error('激励视频光告加载失败', err)
+		//   })
+		//   videoAd.onClose((res) => {})
+		// }
+		// // 用户触发广告后，显示激励视频广告
+		// if (videoAd) {
+		//   videoAd.show().catch(() => {
+		//     // 失败重试
+		//     videoAd.load()
+		//       .then(() => videoAd.show())
+		//       .catch(err => {
+		//         console.error('激励视频 广告显示失败', err)
+		//       })
+		//   })
+		// }
 		// #ifdef MP-WEIXIN
 		wx.showShareMenu({
 			menus: ['shareAppMessage', 'shareTimeline'],
@@ -226,7 +256,7 @@ export default {
 			const { photo_url } = pageData;
 			pageData.photo_url = photo_url.split('*');
 			this.imgList = pageData.photo_url;
-			this.avatarUrl = pageData.avatar_url;
+			this.avatarUrl = this.avatarUrl || pageData.avatar_url;
 			this.pageUrl = pageData.page_url;
 			const INFO = [
 				'🇨🇳 盛世华章，头像换装庆华诞！',
@@ -307,34 +337,10 @@ export default {
 			this.scaleCurrent = this.scale;
 			this.rotateCurrent = this.rotate;
 		},
-		// 获取用户信息
-		getUserInfo(result) {
-			if (result.detail.errMsg !== 'getUserInfo:ok') {
-				uni.showModal({
-					title: '获取用户头像失败',
-					content: '用户信息仅用于创建新的图片，请放心使用',
-					showCancel: false
-				});
-				return;
-			}
-			const { userInfo } = result.detail;
-			userInfo.avatarUrl = userInfo.avatarUrl.replace('132', '0'); // 使用最大分辨率头像 959 * 959
-			console.log('头像', userInfo.avatarUrl);
-			uni.showLoading({
-				title: '加载中...'
-			});
-			uni.downloadFile({
-				url: userInfo.avatarUrl,
-				success: res => {
-					uni.hideLoading();
-					this.avatarUrl = res.tempFilePath;
-				}, 
-				fail: e => {
-					console.log(e);
-					this.handleImageModal();
-				}
-			});
+		onChooseavatar(e) {
+			this.avatarUrl = e.detail.avatarUrl;
 		},
+
 		handleImageModal() {
 			uni.hideLoading();
 			uni.showModal({
@@ -495,7 +501,7 @@ $boder: 12rpx;
 .avatar-container {
 	height: 234px;
 	width: 100%;
-	margin-top: 125rpx;
+	margin-top: 175rpx;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -571,10 +577,14 @@ $boder: 12rpx;
 	position: absolute;
 	bottom: 30rpx;
 	white-space: nowrap;
+	.tab-list{
+		margin-top: 20rpx;
+		background: rgba($color: #090001, $alpha: 0.4);
+	}
 }
 
 .infoView {
-	width: 95%;
+	width: 95%; 
 	position: absolute;
 	bottom: 85px;
 	white-space: nowrap;
@@ -613,12 +623,12 @@ $boder: 12rpx;
 
 .ad-wraper {
 	min-height: 100rpx;
-	margin: 30px auto 0;
+	margin: 10px auto 0;
 	width: 700rpx;
 }
 .avatar-list-bg {
 	width: 100%;
-	height: 230rpx;
+	height: 200rpx;
 	position: absolute;
 	bottom: 0;
 	left: 0;

@@ -57,11 +57,11 @@ const handleBeforeUpload = (file) => {
     const links = extractImageLinks(content);
 
     const strLinks = links.join('*');
-    results.value.push({
+    results.value = [{
       fileName: file.name,
       links: links,
       strLinks: strLinks
-    });
+    }]
 
   };
   reader.readAsText(file);
