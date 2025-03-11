@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "背景",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "n-list": "../../components/list/index"
+  }
+}

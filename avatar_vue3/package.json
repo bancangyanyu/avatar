@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "axios": "^1.8.1",
+    "cheerio": "^1.0.0",
+    "firstui-uni": "^2.4.0",
+    "html-entities": "^2.5.2",
+    "sync-request": "^6.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "globals": "^16.0.0"
+  },
+  "scripts": {
+    "eslint": "eslint --init"
+  }
+}

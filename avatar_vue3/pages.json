@@ -1,0 +1,94 @@
+{
+  "pages": [
+	  {
+	    "path": "pages/avatar/avatar",
+	    "style": {
+	      "navigationBarTitleText": "贴图",
+	      "enablePullDownRefresh": false
+	    } 
+	},
+	{
+	  "path": "pages/index/index",
+	  "style": {
+		"navigationBarTitleText": "头像贴纸合集",
+		"enablePullDownRefresh": true
+	  }
+	},
+	{
+		"path" : "pages/random/random",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/avatar/avatarView",
+		"style" : 
+		{
+			"navigationBarTitleText" : "头像贴图预览",
+			"enablePullDownRefresh": false
+		}
+	},
+	{
+		"path" : "pages/bg/bg",
+		"style" : 
+		{
+			"navigationBarTitleText" : "背景",
+			"enablePullDownRefresh": true
+		}
+	},  
+	{
+		"path" : "pages/bg/bgView",
+		"style" : 
+		{
+			"navigationStyle": "custom"
+		}
+	}
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+  	"color": "#7a7e83",
+  	"selectedColor": "#333333", //"#3cc51f",
+  	"borderStyle": "black",
+  	"backgroundColor": "#ffffff",
+  	"list": [
+		{
+			"pagePath": "pages/avatar/avatar",
+			"text": "贴图",
+			"iconPath": "static/tabbar/image.png",
+			"selectedIconPath": "static/tabbar/image_cur.png"
+		},
+		{
+			"pagePath": "pages/random/random",
+			"text": "幸运",
+			"iconPath": "static/tabbar/r.png",
+			"selectedIconPath": "/static/tabbar/r_s.png"
+		},
+		{
+			"pagePath": "pages/bg/bg",
+			"text": "聊天背景",
+			"iconPath": "static/tabbar/img.png",
+			"selectedIconPath": "static/tabbar/img_cur.png"
+		},
+  		{
+  			"pagePath": "pages/index/index", 
+  			"text": "头像",
+  			"iconPath": "static/tabbar/img.png",
+  			"selectedIconPath": "static/tabbar/img_cur.png"
+  		}
+  	]
+  },
+  "uniIdRouter": {},
+  "easycom": {
+  	"autoscan": true,
+  	"custom": {
+  		"fui-(.*)": "firstui-uni/firstui/fui-$1/fui-$1.vue",
+		"n-(.*)": "@/components/$1/index.vue" 
+  	}
+  } 
+}

@@ -1,0 +1,1 @@
+<view class="content data-v-88f929ba"><image src="{{a}}" alt="" class="{{['avatar', 'data-v-88f929ba', b && 'flashing']}}" bindtap="{{c}}"/><label class="text data-v-88f929ba">抽取今日幸运头像</label><view class="random data-v-88f929ba" bindtap="{{f}}"><image src="{{d}}" alt="" class="{{['dice', 'data-v-88f929ba', e && 'rolling']}}"/></view></view>

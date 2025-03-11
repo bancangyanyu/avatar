@@ -1,0 +1,22 @@
+{
+    "version" : "1.0",
+    "configurations" : [
+        {
+            "default" : {
+                "launchtype" : "local"
+            },
+            "h5" : {
+                "launchtype" : "local"
+            },
+            "mp-weixin" : {
+                "launchtype" : "local",
+				"setting":{
+					"ignoreDevUnusedFiles": false,
+					"ignoreUploadUnusedFiles": false
+				}
+            },
+            "provider" : "aliyun",
+            "type" : "uniCloud"
+        }
+    ]
+}

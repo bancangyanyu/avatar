@@ -1,0 +1,1 @@
+<view class="img-list data-v-c984f117"><view class="waterfalls-box data-v-c984f117"><image wx:for="{{a}}" wx:for-item="item" wx:key="b" class="waterfalls-list-image data-v-c984f117" mode="aspectFill" src="{{item.a}}" id="{{item.c}}" bindtap="{{item.d}}" style="{{'height:' + b}}"></image></view></view>

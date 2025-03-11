@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "头像贴图预览",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "fui-tabs": "../../node-modules/firstui-uni/firstui/fui-tabs/fui-tabs",
+    "n-list": "../../components/list/index"
+  }
+}

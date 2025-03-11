@@ -1,0 +1,7 @@
+{
+  "name": "deduplicate",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

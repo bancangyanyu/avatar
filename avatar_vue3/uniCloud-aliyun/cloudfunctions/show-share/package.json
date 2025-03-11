@@ -1,0 +1,7 @@
+{
+  "name": "show-share",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}
